@@ -27,6 +27,8 @@ const
   cfgHighScore* = "HighScore"
   cfgWidth* = "width"
   cfgHeight* = "height"
+  cfgX* = "x"
+  cfgY* = "y"
 
 proc readConfig*(): Config =
   var filename = getConfigDir() / ConfigFilename
@@ -43,6 +45,8 @@ proc readConfig*(): Config =
         config.setSectionKey(cfgBoard, cfgHighScore, $0)
         config.setSectionKey(cfgWindow, cfgWidth, $Width)
         config.setSectionKey(cfgWindow, cfgHeight, $Height)
+        config.setSectionKey(cfgWindow, cfgX, $InvalidPos)
+        config.setSectionKey(cfgWindow, cfgY, $InvalidPos)
         return config
   return loadConfig(filename)
 
@@ -56,6 +60,8 @@ proc saveConfig*(ui: UI) =
   config.setSectionKey(cfgBoard, cfgHighScore, $ui.highScore)
   config.setSectionKey(cfgWindow, cfgWidth, $ui.mainwindow.width)
   config.setSectionKey(cfgWindow, cfgHeight, $ui.mainwindow.height)
+  config.setSectionKey(cfgWindow, cfgX, $ui.mainwindow.x)
+  config.setSectionKey(cfgWindow, cfgY, $ui.mainwindow.y)
   config.writeConfig(filename)
 
 proc getInt*(config: Config, section, key: string, default=0): int =

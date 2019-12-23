@@ -15,10 +15,11 @@ import point
 
 const
   AppName* = "Gravitate"
-  Version* = "1.0.2"
+  Version* = "1.0.3"
   Margin* = if defined(windows): 60 else: 40
   Width* = 400
   Height* = Width + Margin
+  InvalidPos* = -1
   ConfigFilename* = "gravitate.ini"
   DefColumns* = 9
   DefRows* = 9

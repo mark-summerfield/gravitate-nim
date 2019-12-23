@@ -22,6 +22,11 @@ proc makeMainWindow*(ui: UI, title: string, config: Config) =
   ui.mainWindow = newWindow(title)
   ui.mainWindow.width = config.getInt(cfgWindow, cfgWidth, Width)
   ui.mainWindow.height = config.getInt(cfgWindow, cfgHeight, Height)
+  let x = config.getInt(cfgWindow, cfgX, InvalidPos)
+  let y = config.getInt(cfgWindow, cfgY, InvalidPos)
+  if x != InvalidPos and y != InvalidPos:
+    ui.mainWindow.x = x
+    ui.mainWindow.y = y
   ui.makeButtons()
   ui.statusLabel = newLabel()
   ui.makeBindings()

@@ -18,7 +18,7 @@ import random
 randomize()
 main()
 
-proc main(): void =
+proc main() =
   app.init()
   let ui = newUI(AppName)
   ui.show()
