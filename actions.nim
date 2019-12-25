@@ -17,6 +17,7 @@ import nigui/msgbox
 import strformat
 import strutils
 import times
+import util
 
 proc onClose*(ui: UI) =
   ui.saveConfig()
@@ -68,16 +69,17 @@ proc onAbout*(ui: UI) =
     &"About — {AppName}")
 
 proc onChangeScore*(ui: UI, score: int, gameOver, userWon: bool) =
+  let displayScore = comma(score)
   if userWon:
     if score > ui.highScore:
-      ui.statusLabel.text = &"{score} — New High!"
+      ui.statusLabel.text = &"{displayScore} — New High!"
       ui.highScore = score
       ui.saveConfig()
     else:
-      ui.statusLabel.text = &"{score} — You Won!"
+      ui.statusLabel.text = &"{displayScore} — You Won!"
   elif gameOver:
-    ui.statusLabel.text = &"{score} — Game Over"
+    ui.statusLabel.text = &"{displayScore} — Game Over"
   elif score == 0 and ui.highScore == 0: # have never won
     ui.statusLabel.text = "Click a tile (or press Arrows, then 'd') to play"
   else: # playing or played before
-    ui.statusLabel.text = &"{score}/{ui.highScore}"
+    ui.statusLabel.text = &"{displayScore}/{comma(ui.highScore)}"
