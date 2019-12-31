@@ -19,5 +19,5 @@ proc comma*[T](n: T): string =
     if i mod 3 == 2:
       result.add(',')
   if result.endsWith(','):
-    result = result[0 ..< len(result) - 1]
+    result = result[0 .. ^2]
   return reversed(result)

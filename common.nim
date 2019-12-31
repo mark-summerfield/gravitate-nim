@@ -15,7 +15,7 @@ import point
 
 const
   AppName* = "Gravitate"
-  Version* = "1.0.4"
+  Version* = "1.0.5"
   Margin* = if defined(windows): 60 else: 40
   Width* = 400
   Height* = Width + Margin
